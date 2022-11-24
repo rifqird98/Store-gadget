@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
   Store Settings
@@ -47,11 +47,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row my-3">
                   <div class="col text-right">
                     <button
                       type="submit"
-                      class="btn btn-success px-5"
+                      class="btn btn-primary px-5"
                     >
                       Save Now
                     </button>

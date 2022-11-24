@@ -1,181 +1,104 @@
+<!--
+
+=========================================================
+* Volt Free - Bootstrap 5 Dashboard
+=========================================================
+
+* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
+* Copyright 2021 Themesberg (https://www.themesberg.com)
+* License (https://themesberg.com/licensing)
+
+* Designed and coded by https://themesberg.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
+
+-->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Primary Meta Tags -->
     <title>@yield('title')</title>
 
+    <!-- Favicon -->
     @stack('prepend-style')
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="/style/main.css" rel="stylesheet" />
+
+
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Sweet Alert -->
+    <link type="text/css" href="{{ asset('/') }}vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- Notyf -->
+    <link type="text/css" href="{{ asset('/') }}vendor/notyf/notyf.min.css" rel="stylesheet">
+
+    <!-- Volt CSS -->
+    <link type="text/css" href="{{ asset('/') }}css/volt.css" rel="stylesheet">
+
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
     @stack('addon-style')
-  </head>
+</head>
 
-  <body>
-    <div class="page-dashboard">
-      <div class="d-flex" id="wrapper" data-aos="fade-right">
-        <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading text-center">
-            <img src="/images/dashboard-store-logo.svg" alt="" class="my-4" />
-          </div>
-          <div class="list-group list-group-flush">
-            <a
-              href="{{ route('dashboard') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }} "
-            >
-              Dashboard
-            </a>
-            <a
-              href="{{ route('dashboard-product') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/products*')) ? 'active' : '' }} "
-            >
-              My Products
-            </a>
-            <a
-              href="{{ route('dashboard-transaction') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions*')) ? 'active' : '' }} "
-            >
-              Transactions
-            </a>
-            <a
-              href="{{ route('dashboard-settings-store') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }} "
-            >
-              Store Settings
-            </a>
-            <a
-              href="{{ route('dashboard-settings-account') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }} "
-            >
-              My Account
-            </a>
-            <a
-               href="{{ route('logout') }}"
-               onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"
-               class="list-group-item list-group-item-action"
-            >
-              Sign Out
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-          </div>
-        </div>
+<body>
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <nav
-            class="navbar navbar-expand-lg navbar-light navbar-store fixed-top"
-            data-aos="fade-down"
-          >
-            <div class="container-fluid">
-              <button
-                class="btn btn-secondary d-md-none mr-auto mr-2"
-                id="menu-toggle"
-              >
-                &laquo; Menu
-              </button>
-              <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-              >
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Desktop Menu -->
-                <ul class="navbar-nav d-none d-lg-flex ml-auto">
-                  <li class="nav-item dropdown">
-                    <a
-                        href="#"
-                        class="nav-link"
-                        id="navbarDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                    >
-                        <img
-                            src="/images/icon-user.png"
-                            alt=""
-                            class="rounded-circle mr-2 profile-picture"
-                        />
-                        Hi, {{ Auth::user()->name }}
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
-                        <a href="{{ route('dashboard-settings-account') }}" class="dropdown-item">
-                            Settings
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                      </div>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
-                        @php
-                            $carts = \App\Cart::where('users_id', Auth::user()->id)->count();
-                        @endphp
-                        @if($carts > 0)
-                            <img src="/images/icon-cart-filled.svg" alt="" />
-                            <div class="card-badge">{{ $carts }}</div>
-                        @else
-                            <img src="/images/icon-cart-empty.svg" alt="" />
-                        @endif
-                    </a>
-                  </li>
-                </ul>
+    {{-- Sidebar --}}
+    @include('includes.sidebar-dashboard')
 
-                <ul class="navbar-nav d-block d-lg-none">
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}" class="nav-link">
-                            Hi, {{ Auth::user()->name }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('cart') }}" class="nav-link d-inline-block">
-                            Cart
-                        </a>
-                    </li>
-                </ul>    
-              </div>
-            </div>
-          </nav>
+    {{-- navbar --}}
+    @include('includes.navbar-dashboard')
 
-          {{-- Content --}}
-          @yield('content')
 
-        </div>
-      </div>
-    </div>
+    {{-- content --}}
+    @yield('content')
 
-    <!-- Bootstrap core JavaScript -->
+    {{-- footer --}}
+    @include('includes.footer-admin')
     @stack('prepend-script')
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-    <script>
-      $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-      });
-    </script>
+
+    {{-- data table --}}
+    
+    <!-- Vendor JS -->
+    <script src="{{ asset('/') }}vendor/onscreen/dist/on-screen.umd.min.js"></script>
+
+    <!-- Slider -->
+    <script src="{{ asset('/') }}vendor/nouislider/distribute/nouislider.min.js"></script>
+
+    <!-- Smooth scroll -->
+    <script src="{{ asset('/') }}vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
+    <!-- Charts -->
+    <script src="{{ asset('/') }}vendor/chartist/dist/chartist.min.js"></script>
+    <script src="{{ asset('/') }}vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Core -->
+    <script src="{{ asset('/') }}vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+    <script src="{{ asset('/') }}vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Datepicker -->
+    <script src="{{ asset('/') }}vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+    <!-- Sweet Alerts 2 -->
+    <script src="{{ asset('/') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <!-- Vanilla JS Datepicker -->
+    <script src="{{ asset('/') }}vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+    <!-- Notyf -->
+    <script src="{{ asset('/') }}vendor/notyf/notyf.min.js"></script>
+
+    <!-- Volt JS -->
+    <script src="{{ asset('/') }}assets/js/volt.js"></script>
+
+    <!-- Simplebar -->
+    <script src="{{ asset('/') }}vendor/simplebar/dist/simplebar.min.js"></script>
     @stack('addon-script')
-  </body>
+</body>
+
 </html>

@@ -1,10 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
   Store Settings
 @endsection
 
 @section('content')
+
 <!-- Section Content -->
 <div
   class="section-content section-dashboard-home"

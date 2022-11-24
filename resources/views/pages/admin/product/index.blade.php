@@ -1,10 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
     Store Dashboard
 @endsection
 
 @section('content')
+@include('includes.scriptdatatable')
 <!-- Section Content -->
 <div
     class="section-content section-dashboard-home"

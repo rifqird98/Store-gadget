@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('register/check',[\App\Http\Controllers\Auth\RegisterController::class, 'check'] )->name('api-register-check');
+Route::get('provinces', [\App\Http\Controllers\API\LocationController::class, 'provinces'])->name('api-provinces');
+Route::get('regencies/{provinces_id}',  [\App\Http\Controllers\API\LocationController::class, 'regencies'])->name('api-regencies');
+Route::get('districts/{regencies_id}',  [\App\Http\Controllers\API\LocationController::class, 'districts'])->name('api-districts');
+Route::get('villages/{districts_id}',  [\App\Http\Controllers\API\LocationController::class, 'villages'])->name('api-villages');

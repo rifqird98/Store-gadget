@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
   Store Settings
@@ -29,7 +29,7 @@
                   </ul>
               </div>
           @endif
-          <form action="{{ route('product-gallery.store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
               <div class="card-body">

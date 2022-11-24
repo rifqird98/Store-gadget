@@ -20,22 +20,23 @@
     <div class="dashboard-content">
       <div class="row">
         <div class="col-12">
-          <form action="{{ route('dashboard-settings-redirect','dashboard-settings-store') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('storeupdate',Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            {{-- @method('put') --}}
             <div class="card">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Nama Toko</label>
-                      <input type="text" class="form-control" name="store_name" value="{{ $user->store_name }}"/>
+                      <input type="text" class="form-control" name="store_name" value="{{ Auth::user()->store_name }}"/>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Kategori</label>
                       <select name="categories_id" class="form-control">
-                        <option value="{{ $user->categories_id }}">Tidak diganti</option>
+                        <option value="">Tidak diganti</option>
                         @foreach ($categories as $categories)
                           <option value="{{ $categories->id }}">{{ $categories->name }}</option>
                         @endforeach

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
     Store Dashboard
@@ -6,6 +6,7 @@
 
 @section('content')
 <!-- Section Content -->
+@include('includes.scriptdatatable')
 <div
     class="section-content section-dashboard-home"
     data-aos="fade-up"

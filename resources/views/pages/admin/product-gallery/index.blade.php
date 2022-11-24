@@ -1,10 +1,11 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
     Store Dashboard
 @endsection
 
 @section('content')
+@include('includes.scriptdatatable')
 <!-- Section Content -->
 <div
     class="section-content section-dashboard-home"
@@ -22,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('product-gallery.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{  route('gallery.create') }}" class="btn btn-primary mb-3">
                                 + Tambah Galeri Baru
                             </a>
                             <div class="table-responsive">

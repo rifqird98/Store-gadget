@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
     Store Dashboard
@@ -6,6 +6,7 @@
 
 @section('content')
 <!-- Section Content -->
+@include('includes.scriptdatatable')
 <div
     class="section-content section-dashboard-home"
     data-aos="fade-up"
@@ -22,7 +23,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('user.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{  route('users.create') }}" class="btn btn-primary mb-3">
                                 + Tambah User Baru
                             </a>
                             <div class="table-responsive">

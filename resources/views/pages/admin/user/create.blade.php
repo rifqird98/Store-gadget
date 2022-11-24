@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.main')
 
 @section('title')
   Store Settings
@@ -29,7 +29,7 @@
                   </ul>
               </div>
           @endif
-          <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
               <div class="card-body">
@@ -62,11 +62,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row my-3">
                   <div class="col text-right">
                     <button
                       type="submit"
-                      class="btn btn-success px-5"
+                      class="btn btn-primary px-5"
                     >
                       Save Now
                     </button>

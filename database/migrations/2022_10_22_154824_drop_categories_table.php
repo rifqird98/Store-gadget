@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
 
-        Schema::drop('categories');
+        Schema::drop('catagories');
 
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('catagories');
     }
 
     /**
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         //
-        Schema::drop('categories');
+        Schema::drop('catagories');
 
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('catagories');
     }
 };
